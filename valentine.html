@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Be My Valentine 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(12px);
+      padding: 50px 60px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      font-size: 42px;
+      color: #b8004c;
+      margin-bottom: 30px;
+    }
+
+    button {
+      font-size: 22px;
+      padding: 15px 45px;
+      margin: 15px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    #yesBtn {
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      color: white;
+      box-shadow: 0 10px 25px rgba(255,65,108,0.5);
+    }
+
+    #noBtn {
+      background: #555;
+      color: white;
+      position: absolute;
+    }
+
+    #celebration {
+      display: none;
+      margin-top: 30px;
+      font-size: 30px;
+      color: #fff;
+      animation: popIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0; transform: scale(0.8);}
+      to {opacity:1; transform: scale(1);}
+    }
+
+    @keyframes popIn {
+      from {opacity:0; transform: scale(0.5);}
+      to {opacity:1; transform: scale(1);}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Romantic Music -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/royalty-free-music/track/doing-damage-energic-rock" type="audio/mpeg">
+  </audio>
+
+  <div class="card">
+    <h1>Will you be my Valentine PUKKI ? 💌</h1>
+
+    <button id="yesBtn" onclick="celebrate()">YES 💖</button>
+    <button id="noBtn" onmouseover="moveNo()">No 😜</button>
+
+    <div id="celebration">
+      🎆🎇💐🌹🌸  
+      <br><br>
+      <strong>YAAHHHH!!! 🥳💖</strong>  
+      <br>
+      I Knew u r Kamieee 😂  
+      <br><br>
+      💕 Forever starts now 💕
+    </div>
+  </div>
+
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    const music = document.getElementById("bgMusic");
+
+    function moveNo() {
+      const noBtn = document.getElementById("noBtn");
+      const x = Math.random() * (window.innerWidth - 150);
+      const y = Math.random() * (window.innerHeight - 80);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    function celebrate() {
+      document.getElementById("celebration").style.display = "block";
+      music.play();
+
+      // Real Confetti Fireworks
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+
+      // Continuous bursts
+      setTimeout(() => confetti({particleCount: 150, spread: 120}), 500);
+      setTimeout(() => confetti({particleCount: 150, spread: 120}), 1000);
+      setTimeout(() => confetti({particleCount: 200, spread: 140}), 1500);
+    }
+  </script>
+
+</body>
+</html>
